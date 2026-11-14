@@ -1,8 +1,7 @@
 (function(){
 'use strict';
 var D=window.I18N_APP,IC=window.ICONS,VER='1.1.8';
-var OLDDATA='https://techmohammed.github.io/Borsat-Dinari/data/',LOCALDATA=/\/web\/(index\.html)?$/.test(location.pathname)?'../data/':'data/',BASES=LOCALDATA==='../data/'?[LOCALDATA]:[LOCALDATA,OLDDATA];
-function dfetch(path){var i=0;function next(){var b=BASES[i++];if(!b)return Promise.reject(0);return fetch(b+path,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r}).catch(function(){return next()})}return next()}
+var LOCALDATA='../data/',DATA=/gitlab\.io$/.test(location.hostname)?'https://techmohammed.github.io/Borsat-Dinari/data/':LOCALDATA;
 var $=function(s,r){return (r||document).querySelector(s)};
 var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
 function lsGet(k,d){try{var v=localStorage.getItem('bd_'+k);return v===null?d:v}catch(e){return d}}
@@ -55,7 +54,7 @@ function trend(it){if(!it.dl||!it.tm)return 0;var a=Date.now()-Date.parse(it.tm)
 function dt(it){return it.tm?new Date(it.tm):null}
 
 /* ---------- data ---------- */
-function getJ(f,k){return dfetch(f).then(function(r){return r.json()}).then(function(j){S.data[k]=j;lsSet('d_'+k,JSON.stringify(j))}).catch(function(){})}
+function getJ(f,k){return fetch(DATA+f,{cache:'no-cache'}).catch(function(){return fetch(LOCALDATA+f,{cache:'no-cache'})}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){S.data[k]=j;lsSet('d_'+k,JSON.stringify(j))}).catch(function(){})}
 var failed=false;
 function load(manual){
  if(S.loading)return Promise.resolve();
@@ -202,7 +201,7 @@ function bindSupport(){
 var RANGES=[['tab_2months',60],['tab_month',30],['tab_week',7],['tab_day',1]];
 var hist={},H={days:1,from:0,to:0,custom:false};
 function getHist(id){if(hist[id])return hist[id];
- return hist[id]=dfetch('history/'+id+'.json').then(function(r){return r.json()}).catch(function(){return dfetch('history/'+id.toLowerCase()+'.json').then(function(r){return r.json()}).catch(function(){return []})})}
+ return hist[id]=fetch(DATA+'history/'+id+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return fetch(DATA+'history/'+id.toLowerCase()+'.json',{cache:'no-cache'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []})})}
 function sod(ms){var d=new Date(ms);d.setHours(0,0,0,0);return d.getTime()}
 function eod(ms){var d=new Date(ms);d.setHours(23,59,59,999);return d.getTime()}
 function setPeriod(days){H.custom=false;H.days=days;var now=Date.now();H.from=sod(now-(days-1)*86400000);H.to=eod(now)}
