@@ -1,126 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورصة ديناري - قريباً</title>
-    <!-- استيراد خط كاهيرو الأنيق من Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #090d16 0%, #111e38 100%);
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 500px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 40px 20px;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-        .logo-img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 28px;
-            border: 2px solid #d4af37;
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-            margin-bottom: 25px;
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6); }
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(212, 175, 55, 0.1);
-            color: #e5c158;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-        h1 span {
-            color: #e5c158;
-        }
-        p {
-            color: #94a3b8;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        .loader {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #e5c158;
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
-        }
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-        
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1.0); }
-        }
-
-        .footer-note {
-            margin-top: 35px;
-            font-size: 12px;
-            color: #64748b;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>بورصة ديناري</title>
+<meta name="description" content="Borsat Dinari — IQD exchange rates, metals and crypto">
+<meta name="theme-color" content="#011B39">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="بورصة ديناري">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div class="container">
-        <!-- عرض الأيقونة -->
-        <img src="icon.png" alt="شعار بورصة ديناري" class="logo-img">
-        
-        <div class="badge">قريباً جداً</div>
-        <h1>بورصة <span>ديناري</span></h1>
-        <p>منصتك المباشرة لمتابعة أسعار العملات والأسواق المالية في العراق. نجهز لكم تجربة استثنائية، ترقبونا!</p>
-        
-        <div class="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-        <div class="footer-note">
-            &copy; 2026 جميع الحقوق محفوظة لـ بورصة ديناري
-        </div>
-    </div>
-
+<div id="app"><header id="hdr"></header><div id="ibar" class="strip" style="display:none"></div><main id="page"></main><div id="dock"></div><nav id="nav"></nav></div>
+<div id="toast"></div>
+<script src="i18n.js"></script>
+<script src="icons.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
